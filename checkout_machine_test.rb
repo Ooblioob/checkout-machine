@@ -81,4 +81,37 @@ class CheckoutMachineTest < Minitest::Test
     # Assert
     assert_equal 50, @cm.total
   end
+
+  def test_scan_three_chips_with_bonus_card_expects_400
+    # Arrange
+
+    # Act
+    3.times { @cm.scan(123) }
+    @cm.scan(000)
+
+    # Assert
+    assert_equal 400, @cm.total
+  end
+
+  def test_scan_four_chips_with_bonus_card_expects_600
+    # Arrange
+
+    # Act
+    4.times { @cm.scan(123) }
+    @cm.scan(000)
+
+    # Assert
+    assert_equal 600, @cm.total
+  end
+
+  def test_scan_seven_chips_with_bonus_card_expects_1000
+    # Arrange
+
+    # Act
+    7.times { @cm.scan(123) }
+    @cm.scan(000)
+
+    # Assert
+    assert_equal 1000, @cm.total
+  end
 end
