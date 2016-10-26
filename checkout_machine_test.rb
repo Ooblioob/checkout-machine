@@ -46,5 +46,16 @@ class CheckoutMachineTest < Minitest::Test
     assert_equal 500, @cm.total
   end
 
+  def test_scan_all_products_expects_total_1800
+    # Arrange
 
+    # Act
+    @cm.scan(123)
+    @cm.scan(456)
+    @cm.scan(789)
+    @cm.scan(111)
+
+     # Assert
+    assert_equal 1800, @cm.total
+  end
 end
