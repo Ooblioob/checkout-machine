@@ -58,4 +58,16 @@ class CheckoutMachineTest < Minitest::Test
      # Assert
     assert_equal 1800, @cm.total
   end
+
+  def test_scan_chips_with_bonus_card_expect_200
+    # Arrange
+    @cm.scan(123) # chips
+
+    # Act
+    @cm.scan(000)
+
+
+    # Assert
+    assert_equal 200, @cm.total
+  end
 end
