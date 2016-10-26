@@ -70,4 +70,15 @@ class CheckoutMachineTest < Minitest::Test
     # Assert
     assert_equal 200, @cm.total
   end
+
+  def test_scan_salsa_with_bonus_card_expects_50
+    # Arrange
+    @cm.scan(456) # salsa
+
+    # Act
+    @cm.scan(000)
+
+    # Assert
+    assert_equal 50, @cm.total
+  end
 end

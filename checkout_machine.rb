@@ -1,19 +1,29 @@
 class CheckoutMachine
-  attr_reader :total
-
   def initialize
-    @total = 0
+    @balance = 0
+    @bonus_card_scanned = false
+    @salsa_counter = 0
   end
 
   def scan(sku)
     if sku == 123
-      @total += 200
+      @balance += 200
     elsif sku == 456
-      @total += 100
+      @salsa_counter += 1
+      @balance += 100
     elsif sku == 789
-      @total += 1000
+      @balance += 1000
     elsif sku == 111
-      @total += 500
+      @balance += 500
+    elsif sku == 000
+      @bonus_card_scanned = true
     end
+  end
+
+  def total
+    if @bonus_card_scanned
+      @balance -= 50 * @salsa_counter
+    end
+    @balance
   end
 end
