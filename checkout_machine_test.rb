@@ -34,4 +34,15 @@ class CheckoutMachineTest < Minitest::Test
     # Assert
     assert_equal 1000, cm.total
   end
+
+  def test_scan_cigarettes_expects_total_500
+    # Arrange
+    cm = CheckoutMachine.new
+
+    # Act
+    cm.scan(111)
+
+    # Assert
+    assert_equal 500, cm.total
+  end
 end
