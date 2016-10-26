@@ -12,4 +12,15 @@ class CheckoutMachineTest < Minitest::Test
     # Assert
     assert_equal 200, cm.total
   end
+
+  def test_scan_salsa_expects_total_100
+    # Arrange
+    cm = CheckoutMachine.new
+
+    # Act
+    cm.scan(456)
+
+    # Assert
+    assert_equal 100, cm.total
+  end
 end
