@@ -16,7 +16,7 @@ class CheckoutMachine
     elsif sku == 789
       @balance += 1000
     elsif sku == 111
-      @balance += 500
+      @balance += 550
     elsif sku == 000
       @bonus_card_scanned = true
     end

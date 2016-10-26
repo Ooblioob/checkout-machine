@@ -36,17 +36,17 @@ class CheckoutMachineTest < Minitest::Test
     assert_equal 1000, @cm.total
   end
 
-  def test_scan_cigarettes_expects_total_500
+  def test_scan_cigarettes_expects_total_550
     # Arrange
 
     # Act
     @cm.scan(111)
 
     # Assert
-    assert_equal 500, @cm.total
+    assert_equal 550, @cm.total
   end
 
-  def test_scan_all_products_expects_total_1800
+  def test_scan_all_products_expects_total_1850
     # Arrange
 
     # Act
@@ -56,7 +56,7 @@ class CheckoutMachineTest < Minitest::Test
     @cm.scan(111)
 
      # Assert
-    assert_equal 1800, @cm.total
+    assert_equal 1850, @cm.total
   end
 
   def test_scan_chips_with_bonus_card_expect_200
