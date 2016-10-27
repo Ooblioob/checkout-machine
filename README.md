@@ -43,6 +43,7 @@ end
 
 Any tests should live in the `/tests` folder.  
 
+To run tests, use `rake test` or `rake`
 ```
 $ rake
 Run options: --seed 51276
