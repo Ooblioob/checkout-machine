@@ -39,3 +39,19 @@ class SelfCheckoutMachine
   end
 end
 ```
+## Running Tests
+
+Any tests should live in the `/tests` folder.  
+
+```
+$ rake
+Run options: --seed 51276
+
+# Running:
+
+..........
+
+Finished in 0.001012s, 9884.4314 runs/s, 9884.4314 assertions/s.
+
+10 runs, 10 assertions, 0 failures, 0 errors, 0 skips
+``` 
