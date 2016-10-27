@@ -30,9 +30,12 @@ The store currently sells the following products:
 ```
 class SelfCheckoutMachine
   def scan(sku)
+    # scans a single item
   end
   
   def total
+    # returns the total of all scanned 
+    # items with discounts/taxes applied
   end
 end
 ```
