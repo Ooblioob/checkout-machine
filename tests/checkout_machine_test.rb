@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative 'checkout_machine'
+require_relative '../checkout_machine'
 
 class CheckoutMachineTest < Minitest::Test
   def setup
