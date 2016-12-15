@@ -28,8 +28,7 @@ class CheckoutMachine
 
   def scan(sku)
     update_balance(sku)
-
-    @bonus_card.scanned = true if sku == @bonus_card.sku
+    scan_bonus_card(sku) # this still feels awkward...
   end
 
   def total
@@ -40,7 +39,7 @@ class CheckoutMachine
   private
 
   def apply_discount
-    if @bonus_card.scanned
+    if bonus_card_scanned?
       @balance -= 50 * @salsa_counter
       @balance -= 200 * (@chip_counter/3).floor
     end
@@ -61,5 +60,13 @@ class CheckoutMachine
 
   def find_product(sku)
     @stock.find { |product| product.sku == sku }
+  end
+
+  def scan_bonus_card(sku)
+    @bonus_card.scan(sku)
+  end
+
+  def bonus_card_scanned?
+    @bonus_card.scanned
   end
 end
