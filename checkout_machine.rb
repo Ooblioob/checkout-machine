@@ -1,15 +1,23 @@
 class CheckoutMachine
-  def initialize
-    @balance = 0
-    @bonus_card_scanned = false
-    @salsa_counter = 0
-    @chip_counter = 0
+  def initialize(args={})
+    args = defaults.merge(args)
+    @balance = args[:balance]
+    @bonus_card_scanned = args[:bonus_card_scanned]
+    @salsa_counter = args[:salsa_counter]
+    @chip_counter = args[:chip_counter]
+    @stock = args[:stock]
+  end
 
-    # This is still confusing, but moves dependencies up
-    @stock = { 123 => 200,
+  def defaults
+    { balance: 0,
+      bonus_card_scanned: false,
+      salsa_counter: 0,
+      chip_counter: 0,
+      stock: { 123 => 200,
                456 => 100,
                789 => 1000,
                111 => 550 }
+    }
   end
 
   def scan(sku)
