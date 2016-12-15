@@ -1,3 +1,5 @@
+require './product'
+
 class CheckoutMachine
   def initialize(args={})
     args = defaults.merge(args)
@@ -13,10 +15,10 @@ class CheckoutMachine
       bonus_card_scanned: false,
       salsa_counter: 0,
       chip_counter: 0,
-      stock: { 123 => 200,
-               456 => 100,
-               789 => 1000,
-               111 => 550 }
+      stock: { ProductFactory.chips.sku       => 200,
+               ProductFactory.salsa.sku       => 100,
+               ProductFactory.wine.sku        => 1000,
+               ProductFactory.cigarettes.sku  => 550 }
     }
   end
 
