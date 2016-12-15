@@ -15,10 +15,12 @@ class CheckoutMachine
       bonus_card_scanned: false,
       salsa_counter: 0,
       chip_counter: 0,
-      stock: { ProductFactory.chips.sku       => 200,
-               ProductFactory.salsa.sku       => 100,
-               ProductFactory.wine.sku        => 1000,
-               ProductFactory.cigarettes.sku  => 550 }
+      # this is at least more readable, and separates price from product
+      stock: [ ProductFactory.chips(price: 200),
+               ProductFactory.salsa(price: 100),
+               ProductFactory.wine(price: 1000),
+               ProductFactory.cigarettes(price: 550)
+             ]
     }
   end
 
@@ -43,11 +45,16 @@ class CheckoutMachine
   end
 
   def update_balance(sku)
-    @balance += @stock.fetch(sku, 0)
+    @balance += find_product_by_sku(sku).price
     if sku == 123
       @chip_counter += 1
     elsif sku == 456
       @salsa_counter += 1
     end
+  end
+
+  def find_product_by_sku(sku)
+    # Sigh, looks like I have to do a stupid hack here...
+    @stock.find { |product| product.sku == sku } || Product.new(price: 0)
   end
 end
