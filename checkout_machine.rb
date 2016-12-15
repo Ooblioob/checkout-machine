@@ -4,6 +4,12 @@ class CheckoutMachine
     @bonus_card_scanned = false
     @salsa_counter = 0
     @chip_counter = 0
+
+    # This is still confusing, but moves dependencies up
+    @stock = { 123 => 200,
+               456 => 100,
+               789 => 1000,
+               111 => 550 }
   end
 
   def scan(sku)
@@ -27,16 +33,11 @@ class CheckoutMachine
   end
 
   def update_balance(sku)
+    @balance += @stock.fetch(sku, 0)
     if sku == 123
       @chip_counter += 1
-      @balance += 200
     elsif sku == 456
       @salsa_counter += 1
-      @balance += 100
-    elsif sku == 789
-      @balance += 1000
-    elsif sku == 111
-      @balance += 550
     end
   end
 end
