@@ -1,4 +1,5 @@
 require './product'
+require './bonus_card'
 
 class CheckoutMachine
   def initialize(args={})
@@ -7,6 +8,7 @@ class CheckoutMachine
     @bonus_card_scanned = args[:bonus_card_scanned]
     @salsa_counter = args[:salsa_counter]
     @chip_counter = args[:chip_counter]
+
     @stock = args[:stock]
   end
 
@@ -19,7 +21,8 @@ class CheckoutMachine
       stock: [ ProductFactory.chips(price: 200),
                ProductFactory.salsa(price: 100),
                ProductFactory.wine(price: 1000),
-               ProductFactory.cigarettes(price: 550)
+               ProductFactory.cigarettes(price: 550),
+               BonusCard.new(sku: 000)
              ]
     }
   end
@@ -45,7 +48,7 @@ class CheckoutMachine
   end
 
   def update_balance(sku)
-    @balance += find_product_by_sku(sku).price
+    @balance += find_price(sku)
     if sku == 123
       @chip_counter += 1
     elsif sku == 456
@@ -53,8 +56,11 @@ class CheckoutMachine
     end
   end
 
-  def find_product_by_sku(sku)
-    # Sigh, looks like I have to do a stupid hack here...
-    @stock.find { |product| product.sku == sku } || Product.new(price: 0)
+  def find_price(sku)
+    find_product(sku).price
+  end
+
+  def find_product(sku)
+    @stock.find { |product| product.sku == sku }
   end
 end
