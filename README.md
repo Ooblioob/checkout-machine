@@ -1,6 +1,16 @@
 # checkout-machine
 A toy example checkout machine for certified scrum developer (CSD)
 
+## Excella Ruby Book Club Change History
+
+Changes made chapter by chapter based on practices recommended in 'Practical Object-Oriented Design in Ruby' by Sandi Metz
+
+The original checkout machine code has been saved in the branch 'original-checkout-machine'. Each subsequent chapter had revsions saved in branch ch# (ch2 for Chapter 2, ch3 for Chapter 3 etc). These branches have been merged to master so that the contents of the master branch are current with our progress in the book.
+
+Summary of changes:
+* Chapter 2 (Designing Classes with a Single Responsibility): Created an Item class to hold item related data and future functionality and an Order class to hold order specific data and functionality.
+
+
 ## Problem  
 
 You are a customer at a self-checkout market. You scan the stock keeping unit (SKU) of each product and review the total price you need to pay.
